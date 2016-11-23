@@ -1,11 +1,11 @@
-package com.lecloud.soa;
+package liufybj.netflix;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EurekaServer {
+public class NetflixApplication {
 	public static void main(String[] args) {
-        SpringApplication.run(EurekaServer.class, args);
+        SpringApplication.run(NetflixApplication.class, args);
     }
 }
