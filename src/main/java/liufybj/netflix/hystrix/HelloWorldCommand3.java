@@ -13,11 +13,14 @@ public class HelloWorldCommand3 extends HystrixCommand<String> {
     public HelloWorldCommand3(String name) {
         super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"))
                         .andCommandKey(HystrixCommandKey.Factory.asKey("HelloWorldCommand3"))
-                        .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
+                        .andCommandPropertiesDefaults(
+                                HystrixCommandProperties.Setter()
                                         .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)
                         )
                         .andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.Setter()
-                                .withCoreSize(3))
+                                .withCoreSize(3)
+                                .withMaxQueueSize(6)
+                                .withQueueSizeRejectionThreshold(6))
         );
         this.name = name;
     }
@@ -30,7 +33,7 @@ public class HelloWorldCommand3 extends HystrixCommand<String> {
 
     public static void main(String[] args) throws Exception {
 
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        ExecutorService executorService = Executors.newFixedThreadPool(6);
         for (int i = 0; i < 100; i++) {
             executorService.submit(new Task(i));
         }
@@ -61,7 +64,7 @@ public class HelloWorldCommand3 extends HystrixCommand<String> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            System.out.println("result=" + result);
+            System.out.println("result=" + result + "| execute thread =" + Thread.currentThread().getName());
         }
     }
 }
