@@ -52,11 +52,13 @@ public class AsyncController {
 //        }, 0, TimeUnit.SECONDS);
 
         HttpUriRequest request = new HttpGet("https://www.baidu.com");
+        System.out.println(Thread.currentThread().getName());
 
         httpAsyncClient.execute(request, new FutureCallback<HttpResponse>() {
 
             @Override
             public void completed(HttpResponse httpResponse) {
+                System.out.println(Thread.currentThread().getName());
                 deferredResult.setResult(httpResponse.toString());
             }
 
