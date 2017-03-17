@@ -30,17 +30,17 @@ public class HelloWorldCommand3 extends HystrixCommand<String> {
         return "Hello " + name + " thread:" + Thread.currentThread().getName();
     }
 
-    public static void main(String[] args) throws Exception {
-
-        ExecutorService executorService = Executors.newFixedThreadPool(6);
-        for (int i = 0; i < 100; i++) {
-            executorService.submit(new Task(i));
-        }
-
-        executorService.shutdown();
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
-
-    }
+//    public static void main(String[] args) throws Exception {
+//
+//        ExecutorService executorService = Executors.newFixedThreadPool(6);
+//        for (int i = 0; i < 100; i++) {
+//            executorService.submit(new Task(i));
+//        }
+//
+//        executorService.shutdown();
+//        executorService.awaitTermination(10, TimeUnit.SECONDS);
+//
+//    }
 
 //    @Override
 //    protected String getFallback() {
