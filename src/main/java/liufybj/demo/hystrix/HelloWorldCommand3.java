@@ -1,7 +1,6 @@
-package liufybj.netflix.hystrix;
+package liufybj.demo.hystrix;
 
 import com.netflix.hystrix.*;
-import rx.functions.Action0;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
